@@ -39,13 +39,13 @@
         <div class="col-md-6">
 
             <img id="mainImage"
-                 src="{{ asset('storage/'.$product->images->first()->image_path) }}"
+                 src="{{ asset('images/'.$product->images->first()->image_path) }}"
                  class="img-fluid border mb-3"
                  style="max-height:400px; object-fit:contain; width:100%;">
 
             <div class="d-flex gap-2">
                 @foreach($product->images as $image)
-                    <img src="{{ asset('storage/'.$image->image_path) }}"
+                    <img src="{{ asset('images/'.$image->image_path) }}"
                          width="70"
                          class="thumb-img"
                          onclick="changeImage(this.src)">

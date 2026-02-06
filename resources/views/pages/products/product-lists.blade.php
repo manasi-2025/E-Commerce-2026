@@ -28,7 +28,7 @@
                     <td>₹ {{ number_format($product->price, 2) }}</td>
                     <td>
                         @foreach($product->images as $image)
-                            <img src="{{ asset('storage/'.$image->image_path) }}" width="50" class="me-1 mb-1">
+                            <img src="{{ asset('images/'.$image->image_path) }}" width="50" class="me-1 mb-1">
                         @endforeach
                     </td>
                     <td class="text-end">

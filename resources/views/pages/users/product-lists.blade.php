@@ -53,7 +53,7 @@
                     <div class="card h-100 border-0 shadow-sm">
 
                         <a href="{{ url('/product/'.$product->id.'/'.Str::slug($product->name)) }}">
-                            <img src="{{ asset('storage/'.$product->images->first()->image_path) }}"
+                            <img src="{{ asset('images/'.$product->images->first()->image_path) }}"
                                 class="card-img-top"
                                 style="height:200px; object-fit:cover;">
                         </a>

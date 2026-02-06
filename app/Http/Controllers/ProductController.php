@@ -23,11 +23,16 @@ class ProductController extends Controller
 
         if ($request->hasFile('images')) {
             foreach ($request->images as $image) {
-                $path = $image->store('products','public');
-                $product->images()->create(['image_path' => $path]);
+    
+                $filename = uniqid().'.'.$image->getClientOriginalExtension();
+    
+                $image->move(public_path('images/products'), $filename);
+    
+                $product->images()->create([
+                    'image_path' => 'products/'.$filename
+                ]);
             }
         }
-
         return redirect()->route('product-lists');
     }
 
@@ -48,15 +53,21 @@ class ProductController extends Controller
         $product->update($request->only('name','price'));
 
         if ($request->hasFile('images')) {
+
             foreach ($product->images as $img) {
-                Storage::disk('public')->delete($img->image_path);
+                $fullPath = public_path('images/'.$img->image_path);
+                if (file_exists($fullPath)) {
+                    unlink($fullPath);
+                }
                 $img->delete();
             }
-
+    
             foreach ($request->images as $image) {
-                $path = $image->store('products', 'public');
+                $filename = uniqid().'.'.$image->getClientOriginalExtension();
+                $image->move(public_path('images/products'), $filename);
+    
                 $product->images()->create([
-                    'image_path' => $path
+                    'image_path' => 'products/'.$filename
                 ]);
             }
         }

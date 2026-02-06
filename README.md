@@ -97,3 +97,5 @@ git clone https://github.com/manasi-2025/E-Commerce-2026/tree/master
 cd project-folder
 command for image access :- php artisan storage:link
 run command :- php artisan serve
+
+Note: storage images are not accessible on git directly ,so added images in public folder to access
